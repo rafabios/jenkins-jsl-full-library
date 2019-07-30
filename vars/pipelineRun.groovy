@@ -10,10 +10,10 @@ def call() {
       //Yaml parser = new Yaml()
       //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
        def pipelineDefinition = utilsPipeline()  // Testar
-       println pipelineDefinition.pipelineType
+       println pipelineDefinition.type
     }
 
-    switch(pipelineDefinition.pipelineType) {
+    switch(pipelineDefinition.type) {
       case 'python':
         // Instantiate and execute a Python pipeline
         new pythonPipeline(pipelineDefinition).executePipeline()
