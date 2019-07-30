@@ -1,4 +1,4 @@
-
+import jenkins.model.*
 
 def execute() {
 
@@ -9,7 +9,7 @@ def execute() {
       echo 'Loading pipeline definition'
       //Yaml parser = new Yaml()
       //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
-       def pipelineDefinition = '50-utilsPipeline'()  // Testar
+       def pipelineDefinition = utilsPipeline()  // Testar
     }
 
     switch(pipelineDefinition.pipelineType) {
