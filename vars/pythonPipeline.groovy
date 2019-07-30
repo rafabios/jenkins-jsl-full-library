@@ -1,9 +1,9 @@
-def call() {
+def call(x) {
   node {
     stage('Checkout') {
       checkout scm
     }
-    def p = utilsPipeline()
+    def p = x
 
     
       stage('Test') {
