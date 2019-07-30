@@ -1,3 +1,5 @@
+import jenkins.model.*
+
 def execute() {
 
   node {
