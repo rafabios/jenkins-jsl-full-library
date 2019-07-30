@@ -15,7 +15,7 @@ def execute() {
     switch(pipelineDefinition.pipelineType) {
       case 'python':
         // Instantiate and execute a Python pipeline
-        new '22-pythonRun'(pipelineDefinition).executePipeline()
+        new 22-pythonRun(pipelineDefinition).executePipeline()
       case 'dotnet':
         // Instantiate and execute a DotNet pipeline
         new dotnetPipeline(pipelineDefinition).executePipeline()
