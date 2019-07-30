@@ -10,6 +10,7 @@ def execute() {
       //Yaml parser = new Yaml()
       //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
        def pipelineDefinition = utilsPipeline()  // Testar
+       println pipelineDefinition.pipelineType
     }
 
     switch(pipelineDefinition.pipelineType) {
