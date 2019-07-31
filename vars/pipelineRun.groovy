@@ -8,8 +8,8 @@ def call() {
       checkout scm
       echo 'Loading pipeline definition'
       //Yaml parser = new Yaml()
-      //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
-       def pipelineDefinition = utilsPipeline()  // Testar
+       //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
+       Map pipelineDefinition = utilsPipeline()  // Testar
        println pipelineDefinition.type
     }
 
