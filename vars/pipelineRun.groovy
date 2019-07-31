@@ -19,7 +19,7 @@ def call() {
         // Instantiate and execute a Python pipeline
         //new pythonPipeline(pipelineDefinition)
         println "Switch to python"
-        new pythonPipeline()
+        new pythonPipeline().call()
       //case 'dotnet':
         // Instantiate and execute a DotNet pipeline
         //new dotnetPipeline(pipelineDefinition).executePipeline()
