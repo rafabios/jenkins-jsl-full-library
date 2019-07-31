@@ -14,7 +14,9 @@ def call() {
         sh p.testCommand
       }
     
-
+    println "Var branch:"
+    println env.BRANCH_NAME
+    
     if (env.BRANCH_NAME == 'master' && p.deployUponTestSuccess == true) {
       
         stage('Deploy') {
