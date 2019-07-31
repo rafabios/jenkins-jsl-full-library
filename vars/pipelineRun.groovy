@@ -11,7 +11,7 @@ def call() {
        //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
        Map pipelineDefinition = utilsPipeline()  // Testar
        println pipelineDefinition.type
-    }
+    
 
     switch(pipelineDefinition.type) {
       case 'python':
@@ -26,8 +26,7 @@ def call() {
       //case 'job':
         // Instantiate and execute a Job pipeline
         //new jobPipeline(pipelineDefinition).executePipeline()
-    }
-
+     }
+   }
   }
-
 }
