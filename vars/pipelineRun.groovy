@@ -9,7 +9,7 @@ def call() {
       echo 'Loading pipeline definition'
       //Yaml parser = new Yaml()
        //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
-       def pipelineDefinition
+       
        Map pipelineDefinition = utilsPipeline()  // Testar
        println pipelineDefinition.type
     
@@ -17,7 +17,8 @@ def call() {
     switch(pipelineDefinition.type) {
       case 'python':
         // Instantiate and execute a Python pipeline
-        new pythonPipeline(pipelineDefinition)
+        //new pythonPipeline(pipelineDefinition)
+        new pythonPipeline()
       //case 'dotnet':
         // Instantiate and execute a DotNet pipeline
         //new dotnetPipeline(pipelineDefinition).executePipeline()
