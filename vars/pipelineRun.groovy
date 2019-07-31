@@ -9,6 +9,7 @@ def call() {
       echo 'Loading pipeline definition'
       //Yaml parser = new Yaml()
        //Map pipelineDefinition = parser.load(new File(pwd() + '/pipeline.yml').text)
+       def pipelineDefinition
        Map pipelineDefinition = utilsPipeline()  // Testar
        println pipelineDefinition.type
     
