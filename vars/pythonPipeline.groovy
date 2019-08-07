@@ -18,7 +18,7 @@ def call() {
         println "Entrando no Deploy stage"
           // This step should not normally be used in your script. Consult the inline help for details.
       //try {
-        //  withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
+          withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
 
               sh ("docker build -t ${DOCKER_HUB_ACCOUNT}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} .")
               sh ("docker push ${DOCKER_HUB_ACCOUNT}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}")
@@ -31,7 +31,7 @@ def call() {
                   sh ("docker push ${DOCKER_HUB_ACCOUNT}/${DOCKER_IMAGE_NAME}:'development'")
                 }
 
-          //    }
+              }
      // } catch (Exception e) {
         //      sh 'Erro ao enviar a imagem para o dockerhub'
          // }    
