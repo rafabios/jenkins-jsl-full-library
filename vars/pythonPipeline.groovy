@@ -15,6 +15,7 @@ def call() {
       }
     
       stage('Docker Build & Push Current & Latest Versions') {
+        println "Entrando no Deploy stage"
           // This step should not normally be used in your script. Consult the inline help for details.
       //try {
         //  withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
