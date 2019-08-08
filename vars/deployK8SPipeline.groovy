@@ -1,6 +1,8 @@
 def call() {
 
+
 	stage('Criando arquivos do k8s'){
+
 
     ENV_FILE = readFile '.env'
     //ENV_FILE.readLines().grep(/[^#].+/).grep(/.+[=].+/)
@@ -24,10 +26,6 @@ def call() {
     sh("python utils/kubectl.py ingress ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
 
 
-}
-
     }
-
-
 
 }
