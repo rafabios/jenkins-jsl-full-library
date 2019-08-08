@@ -3,12 +3,6 @@
 
 def call(){
 
-println ">>> Variaveis >>>"
-
-}
-
-def varsJenkins(){
-
 
   def label = UUID.randomUUID().toString()
   def k8sLabel = "K8NODE-"+label

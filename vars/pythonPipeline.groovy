@@ -5,7 +5,7 @@ def call() {
       checkout scm
     }
     def p = utilsPipeline()
-    def v = varsPipeline().varsJenkins()
+    def v = varsPipeline()
     
       stage('Testando codigo') {
         println "Entrando no Test stage"
