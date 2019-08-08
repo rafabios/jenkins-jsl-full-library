@@ -1,6 +1,11 @@
 // Funcao para carregar com as variaveis do projeto
 // 30-07-2019
 
+def call(){
+
+println ">>> Variaveis >>>"
+
+}
 
 def varsJenkins(){
 
