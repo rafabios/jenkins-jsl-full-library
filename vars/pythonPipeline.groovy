@@ -19,7 +19,7 @@ def call() {
           // This step should not normally be used in your script. Consult the inline help for details.
       //try {
           //withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
-              println DOCKER_HUB_ACCOUNT
+              println v.mDOCKER_HUB_ACCOUNT
               sh ("docker build -t ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} .")
               sh ("docker push ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}")
               if ("${v.mBRANCH_NAME}" == 'master' || "${v.mBRANCH_NAME}" == 'release') {
