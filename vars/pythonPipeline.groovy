@@ -5,7 +5,7 @@ def call() {
     def v = varsPipeline()
 
 podTemplate(containers: [
-  containerTemplate(name: 'python-template', image: 'python:alpine', ttyEnabled: true, command: 'cat')
+  containerTemplate(name: 'python-template', image: 'python:latest', ttyEnabled: true, command: 'cat')
   ]) {
 
   node(POD_LABEL) {
