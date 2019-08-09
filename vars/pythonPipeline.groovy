@@ -18,7 +18,7 @@ podTemplate(containers: [
     
       stage('Testando codigo') {
         println "Entrando no Test stage"
-        container('buildalpine') {
+        container('python-template') {
           sh 'pip install -r requirements.txt'
           sh 'ls -lah'
           sh p.testCommand
