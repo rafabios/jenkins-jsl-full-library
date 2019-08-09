@@ -1,19 +1,19 @@
 def call() {
 
 // Template Python
-
+    def p = utilsPipeline()
+    def v = varsPipeline()
 
 podTemplate(containers: [
   containerTemplate(name: 'python-template', image: 'python:alpine', ttyEnabled: true, command: 'cat')
   ]) {
-    
+
   node(POD_LABEL) {
     stage('Clonando Repositorio') {
       println "Entrando no checkout stage"
       checkout scm
     }
-    def p = utilsPipeline()
-    def v = varsPipeline()
+
 
     
       stage('Testando codigo') {
