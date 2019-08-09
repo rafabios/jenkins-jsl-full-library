@@ -1,4 +1,11 @@
 def call() {
+
+// Template Python
+
+podTemplate(containers: [
+  containerTemplate(name: 'python-template', image: 'python:alpine', ttyEnabled: true, command: 'cat')
+  ]) {
+
   node {
     stage('Clonando Repositorio') {
       println "Entrando no checkout stage"
@@ -9,9 +16,11 @@ def call() {
     
       stage('Testando codigo') {
         println "Entrando no Test stage"
-        sh 'pip install -r requirements.txt'
-        sh 'ls -lah'
-        sh p.testCommand
+        container('buildalpine') {
+          sh 'pip install -r requirements.txt'
+          sh 'ls -lah'
+          sh p.testCommand
+        }
       }
     
       stage('Docker Build & Push Current & Latest Versions') {
