@@ -2,9 +2,7 @@ def call() {
 
 // Template Python
 
-podTemplate(containers: [
-  containerTemplate(name: 'python-template', image: 'python:alpine', ttyEnabled: true, command: 'cat')
-  ]) {
+
 
   node {
     stage('Clonando Repositorio') {
@@ -13,7 +11,10 @@ podTemplate(containers: [
     }
     def p = utilsPipeline()
     def v = varsPipeline()
-    
+
+podTemplate(containers: [
+  containerTemplate(name: 'python-template', image: 'python:alpine', ttyEnabled: true, command: 'cat')
+  ]) {    
       stage('Testando codigo') {
         println "Entrando no Test stage"
         container('buildalpine') {
@@ -22,6 +23,7 @@ podTemplate(containers: [
           sh p.testCommand
         }
       }
+   }
     
       stage('Docker Build & Push Current & Latest Versions') {
         println "Entrando no Deploy stage"
