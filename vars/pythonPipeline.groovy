@@ -4,7 +4,7 @@ def call() {
 
 
 
-  node {
+  node(POD_LABEL) {
     stage('Clonando Repositorio') {
       println "Entrando no checkout stage"
       checkout scm
