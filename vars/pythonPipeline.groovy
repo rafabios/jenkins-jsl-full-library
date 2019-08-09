@@ -5,7 +5,7 @@ def call() {
     def v = varsPipeline()
 
 podTemplate(containers: [
-  containerTemplate(name: 'python-template', image: "${env.JENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat')
+  containerTemplate(name: 'python-template', image: "${v.mJENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat')
   ]) {
 
   node(POD_LABEL) {
