@@ -4,6 +4,9 @@ def call() {
     def p = utilsPipeline()
     def v = varsPipeline()
 
+println ">>>> Pod settings:"
+println "Nome da imagem ${v.mDOCKER_HUB_ACCOUNT}/${v.mJENKINS_DOCKER_BUILD_IMAGE}"
+
 podTemplate(containers: [
   containerTemplate(name: 'python-template', image: "${v.mDOCKER_HUB_ACCOUNT}/${v.mJENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat')
   ]) {
@@ -18,7 +21,6 @@ podTemplate(containers: [
     
       stage('Testando codigo') {
         println "Entrando no Test stage"
-        println "Nome da imagem ${v.mDOCKER_HUB_ACCOUNT}/${v.mJENKINS_DOCKER_BUILD_IMAGE}"
         container('python-template') {
           sh 'pip install -r requirements.txt'
           sh 'ls -lah'
