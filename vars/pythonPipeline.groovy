@@ -5,10 +5,10 @@ def call() {
     def v = varsPipeline()
 
 println ">>>> Pod settings:"
-println "Nome da imagem ${v.mDOCKER_HUB_ACCOUNT}/${v.mJENKINS_DOCKER_BUILD_IMAGE}"
+println "Nome da imagem ${v.mJENKINS_DOCKER_BUILD_IMAGE}"
 
 podTemplate(containers: [
-  containerTemplate(name: 'python-template', image: "${v.mDOCKER_HUB_ACCOUNT}/${v.mJENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat')
+  containerTemplate(name: 'python-template', image: "${v.mJENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat')
   ]) {
 
   node(POD_LABEL) {
