@@ -47,6 +47,7 @@ def call() {
       //try {
       //withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
       //println v.mDOCKER_HUB_ACCOUNT
+      sh("env && cat /etc/issue || ls -lha /usr/bin || ls -lah /usr/local || echo 'x' ")
         sh("docker login -u ${v.mDOCKER_HUB_ACCOUNT} -p ${v.mDOCKER_HUB_PASSWORD}")
         sh("docker build -t ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} .")
         sh("docker push ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}")
