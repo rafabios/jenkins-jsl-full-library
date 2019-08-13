@@ -38,7 +38,7 @@ def call() {
      sh p.testCommand
     }
    }
-  }
+  
 
   stage('Docker Build & Push Current & Latest Versions') {
    println ">>> Entrando no Deploy stage"
@@ -73,6 +73,6 @@ def call() {
       }
     }
 
-  
+  }
  }
 }
