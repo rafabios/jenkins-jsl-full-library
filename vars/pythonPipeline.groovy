@@ -22,7 +22,7 @@ podTemplate(
 ){
 
 
-  node(POD_LABEL) {
+  node(label) {
     stage('Clonando Repositorio') {
       container('python-template') {
       println "Entrando no checkout stage"
