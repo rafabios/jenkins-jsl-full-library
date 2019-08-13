@@ -25,7 +25,7 @@ def call() {
   node(label) {
    stage('Clonando Repositorio') {
     container('python-template') {
-     println "Entrando no checkout stage"
+     println ">>> Entrando no checkout stage"
      checkout scm
     }
    }
@@ -33,9 +33,9 @@ def call() {
    stage('Testando codigo') {
     println "Entrando no Test stage"
     container('python-template') {
-     //sh 'pip install -r requirements.txt'
+     sh 'pip install -r requirements.txt'
      sh 'ls -lah'
-     //sh p.testCommand
+     sh p.testCommand
     }
    }
   
@@ -46,12 +46,9 @@ def call() {
       // This step should not normally be used in your script. Consult the inline help for details.
       //try {
       withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
-      //println v.mDOCKER_HUB_ACCOUNT
-        //sh("env && cat /etc/issue || ls -lha /usr/bin || ls -lah /usr/local || echo 'x' ")
-       //   sh("docker login -u ${v.mDOCKER_HUB_ACCOUNT} -p ${v.mDOCKER_HUB_PASSWORD}")
-          sh("docker build -t ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} .")
-          sh("docker push ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}")
-      }
+          //sh("docker build -t ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} .")
+          //sh("docker push ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}")
+      
       if ("${v.mBRANCH_NAME}" == 'master' || "${v.mBRANCH_NAME}" == 'release') {
 
         sh("docker tag ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:'latest'")
@@ -60,7 +57,8 @@ def call() {
       else {
         sh("docker tag ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:'development'")
         sh("docker push ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:'development'")
-        
+                 
+    }
     }
    }
   }
@@ -70,6 +68,7 @@ def call() {
    // }    
    // Deploy to kubernetes
    stage('Deploy to K8s') {
+    println ">>> Entrando na fase de deploy" 
     container('python-template') {
       deployK8SPipeline()
       }
