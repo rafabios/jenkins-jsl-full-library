@@ -4,14 +4,15 @@ def call() {
     def p = utilsPipeline()
     def v = varsPipeline()
 
+// Label 
+
+def label = "worker-${UUID.randomUUID().toString()}"
+
 println ">>>> Pod settings:"
 println "Nome da imagem ${v.mJENKINS_DOCKER_BUILD_IMAGE}"
 
-//podTemplate(containers: [
-  //containerTemplate(name: 'python-template', image: "${v.mJENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat',volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')])
-  //]) {
 podTemplate(
-  //label: 'mypod1',
+  label: label,
   containers: [
     containerTemplate(name: 'python-template', image: "${v.mJENKINS_DOCKER_BUILD_IMAGE}", ttyEnabled: true, command: 'cat')
   ],
@@ -23,8 +24,10 @@ podTemplate(
 
   node(POD_LABEL) {
     stage('Clonando Repositorio') {
+      container('python-template') {
       println "Entrando no checkout stage"
       checkout scm
+      }
     }
 
 
@@ -40,7 +43,8 @@ podTemplate(
    }
     
       stage('Docker Build & Push Current & Latest Versions') {
-        println "Entrando no Deploy stage"
+        println ">>> Entrando no Deploy stage"
+        container('python-template') {
           // This step should not normally be used in your script. Consult the inline help for details.
       //try {
           //withDockerRegistry(credentialsId: 'DOCKERHUB_ACCOUNT_CREDENTIALS', toolName: 'docker') {
@@ -55,14 +59,15 @@ podTemplate(
                   sh ("/usr/bin/docker tag ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER} ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:'development'")
                   sh ("/usr/bin/docker push ${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:'development'")
                 }
-
+        }
               //}
      // } catch (Exception e) {
         //      sh 'Erro ao enviar a imagem para o dockerhub'
          // }    
 // Deploy to kubernetes
+container('python-template') {
 deployK8SPipeline()
-
+}
 
 
       }
