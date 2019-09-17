@@ -10,7 +10,7 @@ def call() {
     //withEnv(ENV_FILE.readLines().grep(/[^#].+/).grep(/.+[=].+/)) {
 
     // kube-converter script
-	sh("export \$(cat .env | egrep -v '#' | egrep -E '^KUBE') && utils/kube-converter.py")
+	sh("export \$(cat .env | egrep -v '#' | egrep -E '^KUBE') && kube-converter.py")
     //sh("utils/kube-converter.py")
 
 	}
@@ -26,10 +26,10 @@ def call() {
     sh("gcloud container clusters get-credentials dev-cluster desenvolvimento-250616 --zone us-central1-a")
 
         // Aplicar k8s config
-        sh("python utils/kubectl.py deploy ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
+        sh("python kubectl.py deploy ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
         
         // ingress
-        sh("python utils/kubectl.py ingress ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
+        sh("python kubectl.py ingress ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
 
 
     }
