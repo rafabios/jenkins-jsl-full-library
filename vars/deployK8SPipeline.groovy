@@ -26,6 +26,7 @@ def call() {
     //sh("gcloud container clusters get-credentials dev-cluster desenvolvimento-250616 --zone us-central1-a")
 
         // Aplicar k8s config
+        print("Variaveis de ambiente: ")
         sh("env")
         sh("python kubectl.py deploy ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
         
