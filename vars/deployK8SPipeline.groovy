@@ -8,7 +8,8 @@ def call() {
     ENV_FILE = readFile '.env'
     //ENV_FILE.readLines().grep(/[^#].+/).grep(/.+[=].+/)
     //withEnv(ENV_FILE.readLines().grep(/[^#].+/).grep(/.+[=].+/)) {
-
+    print("Variaveis de ambiente: ")
+    sh("env")
     // kube-converter script
 	sh("export \$(cat .env | egrep -v '#' | egrep -E '^KUBE') && kube-converter.py")
     //sh("utils/kube-converter.py")
@@ -26,8 +27,6 @@ def call() {
     //sh("gcloud container clusters get-credentials dev-cluster desenvolvimento-250616 --zone us-central1-a")
 
         // Aplicar k8s config
-        print("Variaveis de ambiente: ")
-        sh("env")
         sh("python kubectl.py deploy ${KUBE_CFG} ${PROJETO_NAME} ${DOCKER_IMAGE_NAME}")
         
         // ingress
