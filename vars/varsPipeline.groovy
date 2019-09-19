@@ -23,6 +23,8 @@ def call(){
   //def TEMPLATES_REPO = "git@spobvokd1001.indusval.com.br:root/templates-utils.git"
   def PROJETO_NAME = 'default'
   def JENKINS_DOCKER_BUILD_IMAGE = "${env.JENKINS_DOCKER_BUILD_IMAGE}"
+  def CONSUL_HOST = "${env.CONSUL_HOST}"
+  def CONSUL_PORT = "${env.CONSUL_PORT}"
 
   map = [
     mDOCKER_HUB_ACCOUNT: DOCKER_HUB_ACCOUNT ,
@@ -33,6 +35,8 @@ def call(){
     mBRANCH_NAME: BRANCH_NAME,
     mPROJETO_NAME: PROJETO_NAME,
     mJENKINS_DOCKER_BUILD_IMAGE: JENKINS_DOCKER_BUILD_IMAGE,
+    mCONSUL_HOST: CONSUL_HOST,
+    mCONSUL_PORT: CONSUL_PORT,
   ]
 
   return map

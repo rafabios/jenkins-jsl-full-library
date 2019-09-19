@@ -56,6 +56,7 @@ def call() {
       echo 'Loading pipeline definition'
       Map pipelineDefinition = utilsPipeline()  // Testar
       println pipelineDefinition.type
+      sh("env")
     
 
     switch(pipelineDefinition.type) {
