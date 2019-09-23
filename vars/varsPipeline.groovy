@@ -29,9 +29,9 @@ def call(){
 // Kubernetes cluster login
 
   def K8S_CFG_FILE
-withCredentials([string(credentialsId: 'k8_file', variable: 'k8_secret')]) {
-         K8S_CFG_FILE = "cat $k8_secret"
-         //K8S_CFG_FILE = "${env.k8_secret}"
+withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
+         //K8S_CFG_FILE = "cat $k8_secret"
+         K8S_CFG_FILE = "${env.k8_secret}"
 }
 
 
