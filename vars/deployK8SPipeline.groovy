@@ -28,10 +28,10 @@ def call() {
     //sh("gcloud container clusters get-credentials dev-cluster desenvolvimento-250616 --zone us-central1-a")
 
         // Aplicar k8s config
-        sh("python kubectl.py deploy ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        sh("kubectl.py deploy ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
         
         // ingress
-        sh("python kubectl.py ingress ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        sh("kubectl.py ingress ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
 
 
     }
