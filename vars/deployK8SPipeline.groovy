@@ -19,7 +19,7 @@ def call() {
     stage('Deploy to Kubernetes'){
 
     // Print Nome Correto do ambiente
-    utilsPipeline().printDeployEnv()
+    //utilsPipeline().printDeployEnv()
 
 
     // Gerar kubeconfig do google gcp
