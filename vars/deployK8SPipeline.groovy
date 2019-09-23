@@ -1,9 +1,10 @@
 def call() {
 
+    def v = varsPipeline()
 
 	stage('Criando arquivos do k8s'){
     
-    def v = varsPipeline()
+    
 
     ENV_FILE = readFile '.env'
     //ENV_FILE.readLines().grep(/[^#].+/).grep(/.+[=].+/)
