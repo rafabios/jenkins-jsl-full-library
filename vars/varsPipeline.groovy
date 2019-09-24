@@ -30,8 +30,8 @@ def call(){
 
   def K8S_CFG_FILE
 withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
-         //K8S_CFG_FILE = "cat $k8_secret"
-         K8S_CFG_FILE = "${env.k8_secret}"
+         K8S_CFG_FILE = readFile("${env.k8_secret}")
+         //K8S_CFG_FILE = "${env.k8_secret}"
 }
 
 
