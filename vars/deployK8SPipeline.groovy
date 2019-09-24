@@ -29,11 +29,11 @@ def call() {
 
         // Aplicar k8s config
         sh("env")
-        sh("kubectl.py deploy  $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        sh "kubectl.py deploy  $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}"
         //sh("kubectl.py deploy  ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
         
         // ingress
-        sh("kubectl.py ingress $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        sh "kubectl.py ingress $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME")
         //sh("kubectl.py ingress ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
 
 
