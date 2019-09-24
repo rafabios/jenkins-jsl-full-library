@@ -27,14 +27,20 @@ def call() {
     //sh("gcloud auth activate-service-account --key-file=${K8S_DEPLOY_ACCOUNT}")
     //sh("gcloud container clusters get-credentials dev-cluster desenvolvimento-250616 --zone us-central1-a")
 
+withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
+         K8S_CFG_FILE = "${env.k8_secret}"
+
+
         // Aplicar k8s config
         sh("env")
-        sh "kubectl.py deploy  $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}"
-        //sh("kubectl.py deploy  ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        //sh "kubectl.py deploy  $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}"
+        sh("kubectl.py deploy  ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
         
         // ingress
-        sh "kubectl.py ingress $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME")
-        //sh("kubectl.py ingress ${v.mK8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        //sh "kubectl.py ingress $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME")
+        sh("kubectl.py ingress ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+        
+        }
 
 
     }
