@@ -36,6 +36,9 @@ withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
         //sh "kubectl.py deploy  $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}"
         sh("kubectl.py deploy  ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
         
+        //status
+        sh("kubectl.py status  ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
+
         // ingress
         //sh "kubectl.py ingress $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME")
         sh("kubectl.py ingress ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
