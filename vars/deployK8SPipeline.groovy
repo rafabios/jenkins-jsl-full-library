@@ -32,14 +32,16 @@ withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
 
 
         // Aplicar k8s config
-        sh("env")
+        print(">>> Aplicando configuracao: ")
         //sh "kubectl.py deploy  $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}"
         sh("kubectl.py deploy  ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
         
         //status
+        print(">>> Checando status do rollout: ")
         sh("kubectl.py status  ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
 
         // ingress
+        print(">>> Endpoint para acesso: ")
         //sh "kubectl.py ingress $(echo  $v.mK8S_CFG_FILE > .x.cfg | echo $PWD/.x.cfg) ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME")
         sh("kubectl.py ingress ${K8S_CFG_FILE} ${v.mPROJETO_NAME} ${v.mDOCKER_IMAGE_NAME}")
         
