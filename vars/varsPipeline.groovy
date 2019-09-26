@@ -25,6 +25,7 @@ def call(){
   def JENKINS_DOCKER_BUILD_IMAGE = "${env.JENKINS_DOCKER_BUILD_IMAGE}"
   def CONSUL_HOST = "${env.CONSUL_HOST}"
   def CONSUL_PORT = "${env.CONSUL_PORT}"
+  def KUBE_IMAGE = "${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
 
 // Kubernetes cluster login
 
@@ -47,6 +48,7 @@ withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
     mCONSUL_HOST: CONSUL_HOST,
     mCONSUL_PORT: CONSUL_PORT,
     mK8S_CFG_FILE: K8S_CFG_FILE,
+    mKUBE_IMAGE: KUBE_IMAGE,
   ]
 
   return map
