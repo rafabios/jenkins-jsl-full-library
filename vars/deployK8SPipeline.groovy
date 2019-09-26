@@ -12,7 +12,7 @@ def call() {
     print("Variaveis de ambiente: ")
     sh("env")
     // kube-converter script
-	sh("export \$(cat .env | egrep -v '#' | egrep -E '^KUBE') && kube-converter.py")
+	sh("export \$(cat .env | egrep -v '#' | egrep -E '^KUBE') && KUBE_IMAGE=${v.mKUBE_IMAGE} && kube-converter.py")
     //sh("utils/kube-converter.py")
 
 	}
