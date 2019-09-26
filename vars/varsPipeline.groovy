@@ -25,7 +25,7 @@ def call(){
   def JENKINS_DOCKER_BUILD_IMAGE = "${env.JENKINS_DOCKER_BUILD_IMAGE}"
   def CONSUL_HOST = "${env.CONSUL_HOST}"
   def CONSUL_PORT = "${env.CONSUL_PORT}"
-  def KUBE_IMAGE = "${v.mDOCKER_HUB_ACCOUNT}/${v.mDOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
+  def KUBE_IMAGE = "${DOCKER_HUB_ACCOUNT}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
 
 // Kubernetes cluster login
 
