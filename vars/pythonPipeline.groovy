@@ -36,6 +36,7 @@ def call() {
 
     withSonarQubeEnv(credentialsId: 'SONAR_SECRET') {
     withMaven(maven:'maven3') {
+                  sh "echo '172.16.14.231	sonar.dev.apps.indusval.com.br' >> /etc/hosts"
                   sh 'mvn clean package sonar:sonar'
               }
         
