@@ -34,7 +34,7 @@ def call() {
     println ">>> Entrando nos testes de Qualidade (SONAR)"
     container('python-template') {
 
-    withSonarQubeEnv(credentialsId: 'SONAR_SECRET') {
+    //withSonarQubeEnv(credentialsId: 'SONAR_SECRET') {
     withMaven(maven:'maven3') {
                   sh "echo '172.16.14.231	sonar.dev.apps.indusval.com.br' >> /etc/hosts"
                   sh """ mvn clean package sonar:sonar 
@@ -48,7 +48,7 @@ def call() {
                     """
               }
         
-    }
+    //}
 
     }
    }
