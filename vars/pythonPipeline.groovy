@@ -33,29 +33,26 @@ def call() {
   stage('SonarQube analysis') {
     println ">>> Entrando nos testes de Qualidade (SONAR)"
     container('python-template') {
-
-    withSonarQubeEnv('SONAR') {
-      withCredentials([string(credentialsId: 'SONAR_SECRET', variable: 'SONAR_SECRET')]) {
-    withMaven(maven:'maven3') {
+            withSonarQubeEnv('SONAR') {
+              withCredentials([string(credentialsId: 'SONAR_SECRET', variable: 'SONAR_SECRET')]) {
+            withMaven(maven:'maven3') {
                   def sonarqubeScannerHome = tool name: 'Sonar'
                   sh "echo '172.16.14.231	sonar.dev.apps.indusval.com.br' >> /etc/hosts"
                   sh """ ${sonarqubeScannerHome}/bin/sonar-scanner  -X \
                         -Dsonar.host.url=http://sonar.dev.apps.indusval.com.br:30631 \
                         -Dsonar.projectKey=${v.mDOCKER_IMAGE_NAME} \
                         -Dsonar.login=${env.SONAR_SECRET} \
-                        -Dsonar.projectBaseDir=${WORKSPACE} \
+                        -Dsonar.projectBaseDir=${env.WORKSPACE} \
                         -Dsonar.projectName=${v.mDOCKER_IMAGE_NAME} \
-                        -Dsonar.projectVersion=1.0 \
+                        -Dsonar.projectVersion=${env.BUILD_NUMBER} \
                         -Dsonar.language=python \
                         -Dsonar.scm.disabled=True \
-                        -Dsonar.sourceEncoding=UTF-8 
-                        """
+                        -Dsonar.sourceEncoding=UTF-8 """
+                    }
+                }
               }
-      }
-    }
-
-    }
-   }
+            }
+         }
 
 
 
