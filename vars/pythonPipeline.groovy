@@ -37,7 +37,15 @@ def call() {
     withSonarQubeEnv(credentialsId: 'SONAR_SECRET') {
     withMaven(maven:'maven3') {
                   sh "echo '172.16.14.231	sonar.dev.apps.indusval.com.br' >> /etc/hosts"
-                  sh 'mvn clean package sonar:sonar'
+                  sh """ mvn clean package sonar:sonar 
+                        -Dsonar.projectKey=${v.mDOCKER_IMAGE_NAME}
+                        -Dsonar.projectBaseDir=./
+                        -Dsonar.projectName=${v.mDOCKER_IMAGE_NAME}
+                        -Dsonar.projectVersion=1.0
+                        -Dsonar.language=python
+                        -Dsonar.scm.disabled=True
+                        -Dsonar.sourceEncoding=UTF-8 
+                    """
               }
         
     }
