@@ -47,7 +47,8 @@ def call() {
                         -Dsonar.projectVersion=${env.BUILD_NUMBER} \
                         -Dsonar.language=python \
                         -Dsonar.scm.disabled=True \
-                        -Dsonar.sourceEncoding=UTF-8 """
+                        -Dsonar.sourceEncoding=UTF-8 || \
+                        echo 'Falha ao carregar o SonarQube!' """
                     }
                 }
               }
@@ -61,7 +62,8 @@ def call() {
     container('python-template') {
      sh 'pip install -r requirements.txt'
      sh 'ls -lah'
-     sh p.testCommand
+     sh ''' p.testCommand  || \
+     echo 'Falha ao carregar os testes de codigo! '''
     }
    }
 
