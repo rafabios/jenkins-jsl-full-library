@@ -48,7 +48,7 @@ def call() {
                         -Dsonar.language=python \
                         -Dsonar.scm.disabled=True \
                         -Dsonar.sourceEncoding=UTF-8 2> error.out || \
-                        echo 'Falha ao carregar o SonarQube!: '$(cat error.out) """
+                        echo 'Falha ao carregar o SonarQube!: '\$(cat error.out) """
                     }
                 }
               }
