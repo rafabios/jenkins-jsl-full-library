@@ -42,9 +42,9 @@ def call() {
                         -Dsonar.host.url=http://sonar.dev.apps.indusval.com.br:30631 \
                         -Dsonar.projectKey=${v.mDOCKER_IMAGE_NAME} \
                         -Dsonar.login=${env.SONAR_SECRET} \
-                        -Dsonar.projectBaseDir=${env.WORKSPACE} \
+                        -Dsonar.projectBaseDir=$WORKSPACE \
                         -Dsonar.projectName=${v.mDOCKER_IMAGE_NAME} \
-                        -Dsonar.projectVersion=${env.BUILD_NUMBER} \
+                        -Dsonar.projectVersion=$BUILD_NUMBER \
                         -Dsonar.language=python \
                         -Dsonar.scm.disabled=True \
                         -Dsonar.sourceEncoding=UTF-8 2> error.out || \
