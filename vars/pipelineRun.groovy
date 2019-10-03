@@ -51,6 +51,7 @@ def call() {
 
       // Checar se repositorio e do gitlab ou do github # pegar branch
   def scmInfo = checkout scm
+  println scmInfo
   println "Analisando branch repositorio"
   if ( "${env.gitlabBranch}" == null){
         def BRANCH_NAME  = "${env.gitlabBranch}"
