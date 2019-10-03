@@ -9,7 +9,8 @@ def call() {
                         }
 
             } else {
-                echo 'Seguindo com Deploy'
+                println "Branch:  ${BRANCH_NAME} nao precisa de aprovacao!"
+                println 'Seguindo com Deploy'
                 }
             } catch (Exception e) {
                        sh "Erro ao identificar a Branch ${BRANCH_NAME}"
