@@ -33,8 +33,9 @@ def call() {
   stage('SonarQube analysis') {
     println ">>> Entrando nos testes de Qualidade (SONAR)"
     container('python-template') {
+       try {
             withSonarQubeEnv('SONAR') {
-              withCredentials([string(credentialsId: 'SONAR_SECRET', variable: 'SONAR_SECRET')]) {
+              withCredentials([string(credentialsId: 'SONAR_SECRET', variable: 'SONAR_SECRET')]) {    
             withMaven(maven:'maven3') {
                   def sonarqubeScannerHome = tool name: 'Sonar'
                   sh "echo '172.16.14.231	sonar.dev.apps.indusval.com.br' >> /etc/hosts"
@@ -52,6 +53,9 @@ def call() {
                     }
                 }
               }
+        }catch(Exception ex) {
+             println("Falha ao carregar o maven!");
+                          }
             }
          }
 
