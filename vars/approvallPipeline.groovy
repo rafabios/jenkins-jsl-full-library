@@ -1,22 +1,22 @@
-def call() {
+def call(String BRANCH_NAME) {
         
 
         stage('Aguardando aprovação') {
             def v = varsPipeline()
 
             try {
-            if ("${v.mBRANCH_NAME}" == 'master' || "${v.mBRANCH_NAME}" == 'release') {
+            if ("${BRANCH_NAME}" == 'master' || "${BRANCH_NAME}" == 'release') {
                         timeout(time:2, unit:'DAYS') {
-                            input message:"Aprovar o Deploy em produção?( ${v.mBRANCH_NAME}  )", submitter: 'admin'
+                            input message:"Aprovar o Deploy em produção?( ${BRANCH_NAME}  )", submitter: 'admin'
                         }
 
             } else {
-                println "Branch:  ${v.mBRANCH_NAME} nao precisa de aprovacao!"
+                println "Branch:  ${BRANCH_NAME} nao precisa de aprovacao!"
                 println 'Seguindo com Deploy'
                 println "${v.mPROJETO_NAME}"
                 }
             } catch (Exception e) {
-                       sh "Erro ao identificar a Branch ${v.mBRANCH_NAME}"
+                       sh "Erro ao identificar a Branch ${mBRANCH_NAME}"
              }    
 
             }
