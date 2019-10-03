@@ -26,6 +26,7 @@ def varsJenkins(){
   def DOCKER_IMAGE_NAME = "${scmInfo.GIT_URL}".split('/')[-1].replace('.git','')
   def K8S_DEPLOYMENT_NAME = "${scmInfo.GIT_URL}".split('/')[-1].replace('.git','')
   // Checar se repositorio e do gitlab ou do github # pegar branch
+  println "Analisando branch repositorio"
   if ( "${env.gitlabBranch}" == null){
         def BRANCH_NAME  = "${env.gitlabBranch}"
         println "REPO: GITLAB"
