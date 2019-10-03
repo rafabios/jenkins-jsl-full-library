@@ -63,12 +63,16 @@ def call() {
 
    stage('Testando codigo') {
     println "Entrando no Test stage"
-    container('python-template') {
-     sh """ pip install -r requirements.txt 2> error.out || \
-     echo 'Falha ao carregar o requiements: '\$(cat error.out) """
-     sh """ p.testCommand  || \
-     echo 'Falha ao carregar os testes de codigo!' """
-    }
+    try {
+          container('python-template') {
+          sh """ pip install -r requirements.txt 2> error.out || \
+          echo 'Falha ao carregar o requiements: '\$(cat error.out) """
+          sh """ p.testCommand  || \
+          echo 'Falha ao carregar os testes de codigo!' """
+          }
+    }catch(Exception ex) {
+         println("Falha ao testar imagem!");
+                      }
    }
 
 
