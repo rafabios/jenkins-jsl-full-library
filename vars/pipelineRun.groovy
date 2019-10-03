@@ -25,15 +25,7 @@ def varsJenkins(){
   def scmInfo = checkout scm
   def DOCKER_IMAGE_NAME = "${scmInfo.GIT_URL}".split('/')[-1].replace('.git','')
   def K8S_DEPLOYMENT_NAME = "${scmInfo.GIT_URL}".split('/')[-1].replace('.git','')
-  // Checar se repositorio e do gitlab ou do github # pegar branch
-  println "Analisando branch repositorio"
-  if ( "${env.gitlabBranch}" == null){
-        def BRANCH_NAME  = "${env.gitlabBranch}"
-        println "REPO: GITLAB"
-  } else {
-        def BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
-        println "REPO: GITHUB"
-    }
+
   //def TEMPLATES_REPO = "git@spobvokd1001.indusval.com.br:root/templates-utils.git"
   def PROJETO_NAME = 'default'
 
@@ -56,6 +48,16 @@ def varsJenkins(){
 def call() {
 
   node {
+
+      // Checar se repositorio e do gitlab ou do github # pegar branch
+  println "Analisando branch repositorio"
+  if ( "${env.gitlabBranch}" == null){
+        def BRANCH_NAME  = "${env.gitlabBranch}"
+        println "REPO: GITLAB"
+  } else {
+        def BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
+        println "REPO: GITHUB"
+    }
 
     stage('Aprovacao?'){
       // Chama aprovação antes de iniciar o build
