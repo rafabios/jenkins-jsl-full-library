@@ -1,9 +1,9 @@
 def call() {
         
-         def v = varsPipeline()
 
         stage('Aguardando aprovação') {
-            echo 'aprovacao'
+            def v = varsPipeline()
+
             try {
             if ("${v.mBRANCH_NAME}" == 'master' || "${v.mBRANCH_NAME}" == 'release') {
                         timeout(time:2, unit:'DAYS') {
@@ -13,6 +13,7 @@ def call() {
             } else {
                 println "Branch:  ${v.mBRANCH_NAME} nao precisa de aprovacao!"
                 println 'Seguindo com Deploy'
+                println "${v.mPROJETO_NAME}"
                 }
             } catch (Exception e) {
                        sh "Erro ao identificar a Branch ${v.mBRANCH_NAME}"
