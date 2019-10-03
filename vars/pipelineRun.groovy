@@ -52,7 +52,7 @@ def call() {
     stage('Aprovacao?'){
       // Chama aprovação antes de iniciar o build
       println "Analisando aprovação"
-      approvallPipeline().call()
+      approvallPipeline()
 
       }
 
