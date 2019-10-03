@@ -60,7 +60,7 @@ def call() {
         def BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
         println "REPO: GITHUB"
     }
-
+    println "${BRANCH_NAME}"
     stage('Aprovacao?'){
       // Chama aprovação antes de iniciar o build
       println "Analisando aprovação"
