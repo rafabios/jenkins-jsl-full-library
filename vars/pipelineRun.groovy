@@ -44,12 +44,18 @@ def varsJenkins(){
 }
 // Fim das variaveis Globais
 
-// Chama aprovação antes de iniciar o build
-new approvallPipeline().call()
 
 def call() {
 
   node {
+
+    stage('Aprovacao?'){
+      // Chama aprovação antes de iniciar o build
+      println "Analisando aprovação"
+      approvallPipeline().call()
+
+      }
+
 
     stage('Initialize') {
       checkout scm
