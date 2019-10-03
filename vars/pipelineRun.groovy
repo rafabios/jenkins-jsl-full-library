@@ -45,7 +45,7 @@ def varsJenkins(){
 // Fim das variaveis Globais
 
 // Chama aprovação antes de iniciar o build
-approvallPipeline().call()
+new approvallPipeline().call()
 
 def call() {
 
