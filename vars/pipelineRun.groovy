@@ -64,7 +64,7 @@ def call() {
     stage('Aprovacao?'){
       // Chama aprovação antes de iniciar o build
       println "Analisando aprovação"
-      approvallPipeline(BRANCH_NAME)
+      approvallPipeline("${BRANCH_NAME}")
 
       }
 
