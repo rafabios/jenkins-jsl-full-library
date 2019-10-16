@@ -28,6 +28,7 @@ def varsJenkins(){
 
   //def TEMPLATES_REPO = "git@spobvokd1001.indusval.com.br:root/templates-utils.git"
   def PROJETO_NAME = 'default'
+  def BRANCH_NAME 
 
   map = [
     mDOCKER_HUB_ACCOUNT: DOCKER_HUB_ACCOUNT ,
