@@ -21,11 +21,13 @@ def call(){
   def K8S_DEPLOYMENT_NAME = "${scmInfo.GIT_URL}".split('/')[-1].replace('.git','')
 
   // Checar se repositorio e do gitlab ou do github # pegar branch
+  '''
   if ( "${env.gitlabBranch}" == null){
         def BRANCH_NAME  = "${env.gitlabBranch}"
   } else {
         def BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
     }
+  '''  
 
   //def TEMPLATES_REPO = "git@spobvokd1001.indusval.com.br:root/templates-utils.git"
   def PROJETO_NAME = 'default'
