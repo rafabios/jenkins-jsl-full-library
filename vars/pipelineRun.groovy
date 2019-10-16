@@ -55,10 +55,10 @@ def call() {
   println scmInfo
   println "Analisando branch repositorio"
   if ( "${env.gitlabBranch}" == null){
-        def BRANCH_NAME  = "${env.gitlabBranch}"
+        BRANCH_NAME  = "${env.gitlabBranch}"
         println "REPO: GITLAB"
   } else {
-        def BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
+        BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
         println "REPO: GITHUB"
         println "${BRANCH_NAME}"
         println "${scmInfo.GIT_BRANCH}".split('/')[-1]
