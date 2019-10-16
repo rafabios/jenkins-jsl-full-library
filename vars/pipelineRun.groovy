@@ -59,6 +59,8 @@ def call() {
   } else {
         def BRANCH_NAME  = "${scmInfo.GIT_BRANCH}".split('/')[-1]
         println "REPO: GITHUB"
+        println "${BRANCH_NAME}"
+        println "${scmInfo.GIT_BRANCH}".split('/')[-1]
     }
     println "${BRANCH_NAME}"
     stage('Aprovacao?'){
