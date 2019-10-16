@@ -51,7 +51,6 @@ withCredentials([file(credentialsId: 'k8_file', variable: 'k8_secret')]) {
     mscmInfo: scmInfo,
     mDOCKER_IMAGE_NAME: DOCKER_IMAGE_NAME,
     mK8S_DEPLOYMENT_NAME:K8S_DEPLOYMENT_NAME,
-    mBRANCH_NAME: BRANCH_NAME,
     mPROJETO_NAME: PROJETO_NAME,
     mJENKINS_DOCKER_BUILD_IMAGE: JENKINS_DOCKER_BUILD_IMAGE,
     mCONSUL_HOST: CONSUL_HOST,
